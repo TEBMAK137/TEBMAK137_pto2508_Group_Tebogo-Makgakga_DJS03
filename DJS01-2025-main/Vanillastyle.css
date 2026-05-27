@@ -36,10 +36,21 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Grid container uses proper responsive columns */
 .podcast-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.8rem;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Ensures each card fills its grid cell */
+podcast-card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: inherit;
 }
 
 /* Modal styles */
@@ -99,6 +110,7 @@ body {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.1s;
+  z-index: 2;
 }
 
 .modal-close:hover {
@@ -108,6 +120,7 @@ body {
 .modal-inner {
   padding: 0.5rem 2rem 2rem 2rem;
   clear: both;
+  word-break: break-word;
 }
 
 .modal-header {
@@ -130,6 +143,7 @@ body {
   font-size: 1.9rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .modal-description {
@@ -192,6 +206,11 @@ body {
   display: inline-block;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
+  transition: background 0.1s ease;
+}
+
+.genre-tag:hover {
+  background: #e0d9fe;
 }
 
 .meta-detail-row {
@@ -209,6 +228,9 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
   .modal-inner {
     padding: 0.5rem 1.2rem 1.5rem;
   }
@@ -222,5 +244,8 @@ footer {
   }
   .modal-title {
     font-size: 1.6rem;
+  }
+  .podcast-grid {
+    gap: 1rem;
   }
 }

@@ -1,11 +1,8 @@
-// PodcastCard.js.
-//
 /**
- * Custom Web Component that displays a podcast preview card.
- * Uses Shadow DOM for encapsulation and dispatches a 'podcast-selected' event on click.
+ * PodcastCard - A custom element that renders a podcast preview.
+ * @class
+ * @extends HTMLElement
  */
-
-// PodcastCard.js
 export class PodcastCard extends HTMLElement {
   constructor() {
     super();
@@ -125,11 +122,21 @@ export class PodcastCard extends HTMLElement {
     });
   }
 
+  /**
+   * Sets the podcast data and triggers rendering.
+   * @param {Object} podcast - Podcast object with title, image, seasons, genreNames, updated.
+   */
   setPodcast(podcast) {
     this._podcast = podcast;
     this._render();
   }
 
+  /**
+   * Escapes HTML special characters to prevent XSS.
+   * @param {string} str - Input string.
+   * @returns {string} Escaped string.
+   * @private
+   */
   _escapeHtml(str) {
     if (!str) return "";
     return str.replace(/[&<>]/g, (m) => {
@@ -140,6 +147,12 @@ export class PodcastCard extends HTMLElement {
     });
   }
 
+  /**
+   * Formats an ISO date string into a human-readable format.
+   * @param {string} isoDate - ISO date string.
+   * @returns {string} Formatted date (e.g., "Jan 1, 2025").
+   * @private
+   */
   _formatDate(isoDate) {
     return new Date(isoDate).toLocaleDateString("en-US", {
       year: "numeric",
@@ -148,6 +161,10 @@ export class PodcastCard extends HTMLElement {
     });
   }
 
+  /**
+   * Renders the podcast data into the Shadow DOM.
+   * @private
+   */
   _render() {
     if (!this._podcast) return;
     const { title, image, seasons, genreNames, updated } = this._podcast;

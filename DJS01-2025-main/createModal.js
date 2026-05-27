@@ -1,6 +1,10 @@
-// createModal.js
 import { seasons } from "./data.js";
 
+/**
+ * Creates a modal controller for displaying podcast details.
+ * Expects DOM elements with ids: modalOverlay, modalContent, closeModalBtn.
+ * @returns {Object} Modal controller with open(podcast) and close() methods.
+ */
 export function createModal() {
   const overlay = document.getElementById("modalOverlay");
   const contentContainer = document.getElementById("modalContent");
@@ -12,6 +16,11 @@ export function createModal() {
     );
   }
 
+  /**
+   * Escapes HTML special characters.
+   * @param {string} str - Input string.
+   * @returns {string} Escaped string.
+   */
   function escapeHtml(str) {
     if (!str) return "";
     return str.replace(/[&<>]/g, (m) => {
@@ -22,6 +31,11 @@ export function createModal() {
     });
   }
 
+  /**
+   * Formats an ISO date string.
+   * @param {string} isoDate - ISO date.
+   * @returns {string} Formatted date.
+   */
   function formatDate(isoDate) {
     return new Date(isoDate).toLocaleDateString("en-US", {
       year: "numeric",
@@ -30,6 +44,11 @@ export function createModal() {
     });
   }
 
+  /**
+   * Builds the HTML content for the modal.
+   * @param {Object} podcast - Podcast object with full details.
+   * @returns {string} HTML string.
+   */
   function buildModalContent(podcast) {
     const updatedHuman = formatDate(podcast.updated);
     const genreTags = (podcast.genreNames || [])
@@ -74,12 +93,19 @@ export function createModal() {
     `;
   }
 
+  /**
+   * Closes the modal.
+   */
   function close() {
     overlay.classList.remove("active");
     overlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   }
 
+  /**
+   * Opens the modal with podcast details.
+   * @param {Object} podcast - Podcast object.
+   */
   function open(podcast) {
     contentContainer.innerHTML = buildModalContent(podcast);
     overlay.classList.add("active");

@@ -1,5 +1,37 @@
-// data.js
-// data.js
+/**
+ * @fileoverview Podcast, genre, and season data.
+ */
+
+/**
+ * @typedef {Object} Podcast
+ * @property {string} id - Unique identifier
+ * @property {string} title - Podcast title
+ * @property {string} description - Show description
+ * @property {number} seasons - Number of seasons
+ * @property {string} image - Cover image URL
+ * @property {number[]} genres - Array of genre IDs
+ * @property {string} updated - ISO date string of last update
+ */
+
+/**
+ * @typedef {Object} Genre
+ * @property {number} id - Genre identifier
+ * @property {string} title - Genre name
+ */
+
+/**
+ * @typedef {Object} SeasonDetail
+ * @property {string} title - Season title
+ * @property {number} episodes - Number of episodes
+ */
+
+/**
+ * @typedef {Object} PodcastSeasons
+ * @property {string} id - Podcast ID
+ * @property {SeasonDetail[]} seasonDetails - Array of season details
+ */
+
+/** @type {Podcast[]} */
 export const podcasts = [
   {
     id: "10716",
@@ -113,6 +145,7 @@ export const podcasts = [
   },
 ];
 
+/** @type {Genre[]} */
 export const genres = [
   { id: 1, title: "Personal Growth" },
   { id: 2, title: "Investigative Journalism" },
@@ -121,6 +154,7 @@ export const genres = [
   { id: 5, title: "Entertainment" },
 ];
 
+/** @type {PodcastSeasons[]} */
 export const seasons = [
   {
     id: "10716",
