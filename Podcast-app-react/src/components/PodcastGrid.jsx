@@ -1,1 +1,1 @@
-import PodcastCard from "./PodcasrCard";
+import PodcastCard from "./PodcastCard";
